@@ -25,7 +25,19 @@ namespace Lab
 			zodiak = "";
 			int i = 2;
 			if (data.Length == 4) i++;
-			birthday = Array.ConvertAll(data[i].Trim().Split("."), int.Parse);
+			while (true)
+			{
+				try
+				{
+					birthday = Array.ConvertAll(data[i].Trim().Split("."), int.Parse);
+					break;
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Неправильний формат! Введіть дату ще раз!");
+					data[i] = Console.ReadLine();
+				}
+			}
 			while (!isValidDate(birthday))
 			{
 				Console.WriteLine("Введіть дату ще раз");
